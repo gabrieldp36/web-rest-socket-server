@@ -62,7 +62,7 @@ formulario.addEventListener('submit', event => {
 
 // Login con Google Sign In.
 
-window.onSignIn = function (googleUser) {
+onSignIn = function (googleUser) {
 
     // var profile = googleUser.getBasicProfile();
 
@@ -91,12 +91,12 @@ window.onSignIn = function (googleUser) {
     .catch(console.log);
 };
 
-window.onFailure = function (error) {
+onFailure = function (error) {
 
     console.log(error);
 };
 
-window.renderButton = function () {
+renderButton = function () {
 
     window.gapi.load('auth2', () =>  {
 
