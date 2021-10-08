@@ -4,7 +4,7 @@ const formulario = document.querySelector('form');
 
 const url = ( window.location.hostname.includes('localhost') ) 
             ? `http://localhost:${window.location.port}/`
-            : `https://restserver-node-gdp.herokuapp.com/`;
+            : `https://web-rest-socket-server.herokuapp.com/`;
 
 // Login manual.
 
