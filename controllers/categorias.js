@@ -85,7 +85,7 @@ const actualizarCategoria = async (req = request, res = response) => {
 
     const data = {};
 
-    if ( !nombre === undefined && nombre.trim() ) {
+    if ( !(nombre === undefined) && ( nombre.trim() ) ) {
 
         data.nombre = nombre.toUpperCase();
     };
