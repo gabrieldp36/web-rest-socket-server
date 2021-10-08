@@ -1,0 +1,27 @@
+{
+  "name": "10-web-rest-socket-server",
+  "version": "6.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "Gabriel Domínguez Prado",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.27.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-validator": "^6.12.1",
+    "google-auth-library": "^7.9.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.5",
+    "socket.io": "^4.2.0",
+    "uuid": "^8.3.2"
+  }
+}

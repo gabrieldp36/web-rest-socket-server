@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/img/favicon-socket.png">
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Socket Chat</title>
+</head>
+<body class="background container">
+    <div>
+        <div id= "alertOn" style="display: inline">
+        </div>
+        <div id= "alertOf" style="display: inline">
+        </div>
+        <button id="btnSalir" class="btn btn-outline-danger" style="display: inline; margin-top: -10px ;float: right;">
+            Logout
+        </button>
+    </div>
+    <div class="row mt-5">
+        <div class="col-sm-6">
+            <h3>Enviar mensaje</h3>
+            <hr>
+            <input type="text"
+                    id="txtUid"
+                    class="form-control mb-4"
+                    placeholder="Uid"
+                    autocomplete="off">
+            <input type="text"
+                    id="txtMensaje"
+                    class="form-control mb-4"
+                    placeholder="Mensaje"
+                    autocomplete="off">
+            <h3 class="mt-4" style="display: inline;">Usuarios conectados: <h3 id="usuariosContador" style="display: inline; margin-left: 5px;"></h3> </h3>
+            <hr>
+            <ul id="ulUsuarios">
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <h3>Chat grupal</h3>
+            <hr>
+            <ul id="ulMensajes" class="overflow-auto" style="max-height: 400px">
+            </ul>
+            <div class="col-sm-12">
+                <h3>Mensajes privados</h3>
+                <hr>
+                <ul id="ulChatsPrivados" class="overflow-auto" style="max-height: 400px">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="./socket.io/socket.io.js"></script>
+    <script src="./js/chat.js"></script>
+</body>
+</html>
