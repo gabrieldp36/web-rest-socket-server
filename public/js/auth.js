@@ -98,6 +98,14 @@ onFailure = function (error) {
 
 renderButton = function () {
 
+    window.gapi.load('auth2', () =>  {
+
+        window.gapi.signin2.render('google-signin-button', {
+            
+          onsuccess: this.onSignIn,
+        });
+    });
+
     gapi.signin2.render('my-signin2', {
         
         'scope': 'profile email',
