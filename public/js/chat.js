@@ -200,7 +200,7 @@ btnSalir.addEventListener('click', () => {
 
     localStorage.removeItem('token');
 
-    window.location = url + 'logout';
+    window.location = url;
 });
 
 const main = async () => {

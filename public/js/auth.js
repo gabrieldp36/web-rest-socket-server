@@ -6,6 +6,8 @@ const url = ( window.location.hostname.includes('localhost') )
             ? `http://localhost:${window.location.port}/`
             : `https://web-rest-socket-server.herokuapp.com/`;
 
+const googleClientID = '778480152819-frrdc59gqm61ldn9lj8db7l0qn2l8gm1.apps.googleusercontent.com';
+
 // Login manual.
 
 formulario.addEventListener('submit', event => {
@@ -62,74 +64,87 @@ formulario.addEventListener('submit', event => {
 
 // Login con Google Sign In.
 
-onSignIn = function (googleUser) {
-
-    // var profile = googleUser.getBasicProfile();
-
-    // console.log('ID: ' + profile.getId());
-    // console.log('Nombre: ' + profile.getGivenName());
-    // console.log('Apellido: ' + profile.getFamilyName());
-    // console.log('Imagen URL: ' + profile.getImageUrl());
-    // console.log('Correo: ' + profile.getEmail());
-
-    var id_token = googleUser.getAuthResponse().id_token;
-
-    const data = {id_token}
+function handleCredentialResponse(response) {
+    
+    const body = {
+        id_token: response.credential
+    };
 
     fetch(url + 'api/auth/google', {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {'Content-Type': 'application/json'}
-    })
-    .then ( response => response.json() )
-    .then ( ( {token} ) => {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {'Content-Type': 'application/json'}
+        })
+        .then ( response => response.json() )
+        .then ( ( data ) => {
 
-        localStorage.setItem('token', token);
+            const token = data.token;
 
-        window.location = url + 'chat';
-    })
-    .catch(console.log);
+            const correo = data.usuario.correo;
+    
+            localStorage.setItem('token', token);
+
+            localStorage.setItem('correo', correo);
+    
+            window.location = url + 'chat';
+        })
+        .catch(console.log);
 };
 
-onFailure = function (error) {
+window.onload = function () {
 
-    console.log(error);
-};
+    google.accounts.id.initialize({
 
-renderButton = function () {
+      client_id: googleClientID,
 
-    window.gapi.load('auth2', () =>  {
-
-        window.gapi.signin2.render('google-signin-button', {
-            
-          onsuccess: this.onSignIn,
-        });
+      callback: handleCredentialResponse,
     });
 
-    gapi.signin2.render('my-signin2', {
+    google.accounts.id.renderButton(
+
+      document.getElementById('buttonDiv'),
+      
+      {
+        type:'standard',
+        size:'large',
+        theme: 'filled_blue', 
+        text:'signin_with',
+        shape:'circle',
+        logo_alignment:'left',
+        width: '275',}
+    );
+};
+
+ const signOut =  () => {
+
+    google.accounts.id.disableAutoSelect();
+    
+    google.accounts.id.revoke(localStorage.getItem('correo'), () => {
+
+        localStorage.clear();
+
+        (function () {
+            var cookies = document.cookie.split("; ");
+            for (var c = 0; c < cookies.length; c++) {
+                var d = window.location.hostname.split(".");
+                while (d.length > 0) {
+                    var cookieBase = encodeURIComponent(cookies[c].split(";")[0].split("=")[0]) + '=; expires=Thu, 01-Jan-1970 00:00:01 GMT; domain=' + d.join('.') + ' ;path=';
+                    var p = location.pathname.split('/');
+                    document.cookie = cookieBase + '/';
+                    while (p.length > 0) {
+                        document.cookie = cookieBase + p.join('/');
+                        p.pop();
+                    };
+                    d.shift();
+                }
+            }
+        })();
         
-        'scope': 'profile email',
-        'width': 240,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSignIn,
-        'onfailure': onFailure
-    });
-};
 
-function signOut() {
-
-    var auth2 = gapi.auth2.getAuthInstance();
-
-    auth2.signOut().then(function () {
-
-        localStorage.removeItem('token');
-
-        console.log('Usuario desconectado.');
+        location.reload();
     });
 };
 
 const anchorSingOut = document.getElementById('logout-google');
 
-anchorSingOut.addEventListener('click', () => signOut() );
+anchorSingOut.addEventListener('click',  () => signOut() );
