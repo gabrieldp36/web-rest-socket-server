@@ -6,7 +6,7 @@ Simula un rest server que utilizaría una cafetería para organizar y administar
 
 Asimismo, se integró la tecnología de Sockets para desarrollar un chat grupal entre usuarios, con la posibilidad de enviar mensajes privados. A dicho chat sólo se puede acceder con credenciales de acceso, autenticándose en forma manual o automática mediante Google Sign In.
 
-Pueden crearse un usuario en forma manual (ver link a la documentación), asignarle el rol de ADMIN_ROLE, obtener su token y probar a fondo el Rest Server!!
+Pueden utilizar las siguientes credenciales de acceso que otorgan privilegios de ADMIN, obtener su token y probar a fondo el Rest Server!! Usuario: test1@test.com, Password: M23456a8.
 
 A continuación les copio el link a la documentación que sirve de guía para comprender el uso de cada uno de los servicios implementados: https://documenter.getpostman.com/view/17109440/U16qKPMZ
 
