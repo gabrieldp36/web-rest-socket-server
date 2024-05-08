@@ -1,3 +1,5 @@
+![portada](https://github.com/gabrieldp36/web-rest-socket-server/assets/88417383/403565bb-1ad0-4841-885d-28d887a24f27)
+
 # Rest + Socket Server.
 
 El objeto de esta aplicación fue desarrollar un rest server robusto con rutas protegidas, validaciones, uso de middewares, manejo de archivos, autenticación manual y mediante Google Sign In, todo ello en conjunto con MongoDB.
