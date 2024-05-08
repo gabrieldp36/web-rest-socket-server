@@ -86,6 +86,8 @@ const conectarSocket = async () => {
         alertOn.innerHTML = `<span> <strong>Servidor: Online</strong> </span>`;
 
         alertOn.classList.add('alert', 'alert-success', 'mt-2', 'col-md-2');
+
+        alertOn.classList.remove('alert-danger');
     });
 
     socket.on('disconnect', () => {
@@ -93,6 +95,8 @@ const conectarSocket = async () => {
         alertOn.innerHTML = `<span> <strong>Servidor: Offline</strong> </span>`;
 
         alertOn.classList.add('alert', 'alert-danger', 'mt-2', 'col-md-2');
+
+        alertOn.classList.remove('alert-success');
     });
 
     socket.on('recibir-mensaje', dibujarMensajes);
@@ -142,7 +146,7 @@ const dibujarMensajes = ( mensajes = []) => {
 
         mensajesHtml += `
             <li>
-                <p align="justify" style="word-wrap: break-word;">
+                <p style="word-wrap: break-word;">
                     <span class="text-success">${fechaHora}</span>
                     <span class="text-primary"> | ${nombre} ${apellido}: </span>
                     <span> ${mensaje} </span>

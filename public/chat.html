@@ -10,45 +10,51 @@
     <title>Socket Chat</title>
 </head>
 <body class="background container">
-    <div>
-        <div id= "alertOn" style="display: inline">
+    <div class="displayNav mt-4">
+        <div id= "alertOn">
         </div>
-        <div id= "alertOf" style="display: inline">
+        <div id= "alertOf">
         </div>
-        <button id="btnSalir" class="btn btn-outline-danger" style="display: inline; margin-top: -10px ;float: right;">
+        <button id="btnSalir" class="btn btn-outline-danger">
             Logout
         </button>
     </div>
-    <div class="row mt-5">
-        <div class="col-sm-6">
+    <div class="grid-chat mt-3">
+        <div class="columna">
             <h3>Enviar mensaje</h3>
             <hr>
-            <input type="text"
-                    id="txtUid"
-                    class="form-control mb-4"
-                    placeholder="Uid"
-                    autocomplete="off">
-            <input type="text"
-                    id="txtMensaje"
-                    class="form-control mb-4"
-                    placeholder="Mensaje"
-                    autocomplete="off">
+            <input 
+                type="text"
+                id="txtUid"
+                class="form-control mb-4"
+                placeholder="Uid"
+                autocomplete="off"
+            >
+            <input 
+                type="text"
+                id="txtMensaje"
+                class="form-control mb-4"
+                placeholder="Mensaje"
+                autocomplete="off"
+            >
+        </div>
+        <div class="columna">
             <h3 class="mt-4" style="display: inline;">Usuarios conectados: <h3 id="usuariosContador" style="display: inline; margin-left: 5px;"></h3> </h3>
             <hr>
-            <ul id="ulUsuarios">
+            <ul id="ulUsuarios" class="columna-custom">
             </ul>
         </div>
-        <div class="col-sm-6">
+        <div class="columna">
             <h3>Chat grupal</h3>
             <hr>
-            <ul id="ulMensajes" class="overflow-auto" style="max-height: 400px">
+            <ul id="ulMensajes" class="columna-custom">
             </ul>
-            <div class="col-sm-12">
-                <h3>Mensajes privados</h3>
-                <hr>
-                <ul id="ulChatsPrivados" class="overflow-auto" style="max-height: 400px">
-                </ul>
-            </div>
+        </div>
+        <div class="columna">
+            <h3>Mensajes privados</h3>
+            <hr>
+            <ul id="ulChatsPrivados" class="columna-custom">
+            </ul>
         </div>
     </div>
 </div>

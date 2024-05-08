@@ -78,6 +78,8 @@ function handleCredentialResponse(response) {
         .then ( response => response.json() )
         .then ( ( data ) => {
 
+            console.log(data);
+
             const token = data.token;
 
             const correo = data.usuario.correo;
