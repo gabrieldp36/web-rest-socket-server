@@ -13,7 +13,7 @@ A continuación les copio el link a la documentación que sirve de guía para co
 Pueden visitar la App haciendo click en este link: 
 
 ```
-https://web-rest-socket-server.herokuapp.com/
+https://web-rest-socket-server-production.up.railway.app/
 ```
 
 ### Notas:

@@ -1,0 +1,799 @@
+{
+	"info": {
+		"_postman_id": "e9c90f84-eb8a-48fd-9a98-0a9412bd4032",
+		"name": "Rest Api Node",
+		"description": "Estos son los endpoints que tenemos definidos hasta el momento.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17109440"
+	},
+	"item": [
+		{
+			"name": "API Usuarios",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correo\": \"test1@test.com\",\r\n    \"password\": \"M23456a8\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Google Sing In",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_token\": \"123abc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/google",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"google"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Usuarios - Paginado",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/usuarios?limite=10&desde=5&=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"usuarios"
+							],
+							"query": [
+								{
+									"key": "limite",
+									"value": "10"
+								},
+								{
+									"key": "desde",
+									"value": "5"
+								},
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Juana\",\r\n    \"apellido\": \"Díaz\",\r\n    \"correo\": \"test16@test.com\",\r\n    \"password\": \"M23456a8\",\r\n    \"rol\": \"USER_ROLE\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/usuarios",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Spike\",\r\n    \"apellido\": \"Spiegel\",\r\n    \"password\": \"M23456a8\",\r\n    \"rol\": \"ADMIN_ROLE\",\r\n    \"estado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/usuarios/663a7436fc2ba01f31b26562",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"usuarios",
+								"663a7436fc2ba01f31b26562"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/usuarios/663a74a141aa5622d747b4a2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"usuarios",
+								"663a74a141aa5622d747b4a2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validar o Renovar JWT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/auth",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API Categorías",
+			"item": [
+				{
+					"name": "Obtener Categorías",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/categorias?limite=5&desde=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"categorias"
+							],
+							"query": [
+								{
+									"key": "limite",
+									"value": "5"
+								},
+								{
+									"key": "desde",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Categoría por ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/categorias/663a7e0b41aa5622d747b531",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"categorias",
+								"663a7e0b41aa5622d747b531"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Categoría",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"comidas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/categorias/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"categorias",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Categoría",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"bebidas\",\r\n    \"estado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/categorias/663a7dc241aa5622d747b52b",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"categorias",
+								"663a7dc241aa5622d747b52b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar Categoría",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/categorias/663a7dc241aa5622d747b52b",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"categorias",
+								"663a7dc241aa5622d747b52b"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API Productos",
+			"item": [
+				{
+					"name": "Obtener Productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/productos?limite=20&desde=8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"productos"
+							],
+							"query": [
+								{
+									"key": "limite",
+									"value": "20"
+								},
+								{
+									"key": "desde",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Producto por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/productos/614bf05eacc185b77d678905",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"productos",
+								"614bf05eacc185b77d678905"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Producto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Rhodesia\",\r\n    \"categoria\": \"663a7ffc41aa5622d747b58b\",\r\n    \"precio\": 100,\r\n    \"descripcion\": \"golosinas varias\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/productos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Producto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"oreo\",\r\n    \"estado\": true,\r\n    \"precio\": 50,\r\n    \"descripcion\": \"Sabor chocolate\",\r\n    \"disponibilidad\": true,\r\n    \"categoria\": \"663a7fa341aa5622d747b570\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/productos/663a82e141aa5622d747b603",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"productos",
+								"663a82e141aa5622d747b603"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar Producto",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/productos/614bc27c5f0530bd92257abb",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"productos",
+								"614bc27c5f0530bd92257abb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API Buscar",
+			"item": [
+				{
+					"name": "Búsquedas Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/buscar/usuarios/martin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"buscar",
+								"usuarios",
+								"martin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Búsquedas Categorías",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/buscar/categorias/cafe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"buscar",
+								"categorias",
+								"cafe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Búsquedas Productos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/buscar/productos/lagrima",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"buscar",
+								"productos",
+								"lagrima"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Búsquedas Productos por Categorías",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/buscar/categorias/productos/cafe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"buscar",
+								"categorias",
+								"productos",
+								"cafe"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API Uploads",
+			"item": [
+				{
+					"name": "Subir archivo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "destino",
+								"value": "archivos",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "archivo",
+									"type": "file",
+									"src": "/C:/Users/gabri/Desktop/Material Curso Node/http-response-codes.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/uploads",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"uploads"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cargar Imagen - Productos",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "archivo",
+									"type": "file",
+									"src": "/C:/Users/gabri/Pictures/Chocolina.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/uploads/productos/663a82cc41aa5622d747b5fc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"uploads",
+								"productos",
+								"663a82cc41aa5622d747b5fc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar Imagen Producto - Usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/uploads/productos/663a82cc41aa5622d747b5fc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"uploads",
+								"productos",
+								"663a82cc41aa5622d747b5fc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
