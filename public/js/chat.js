@@ -20,7 +20,7 @@ const usuariosContador = document.querySelector('#usuariosContador');
 
 const url = ( window.location.hostname.includes('localhost') ) 
 ? `http://localhost:${window.location.port}/`
-: `https://web-rest-socket-server.herokuapp.com/`;
+: `https://web-rest-socket-server-production.up.railway.app/`;
 
 let usuario = null;
 
