@@ -4,7 +4,7 @@ const formulario = document.querySelector('form');
 
 const url = ( window.location.hostname.includes('localhost') ) 
             ? `http://localhost:${window.location.port}/`
-            : `https://web-rest-socket-server-production.up.railway.app/`;
+            : `https://web-rest-socket-server.onrender.com/`;
 
 const googleClientID = '778480152819-frrdc59gqm61ldn9lj8db7l0qn2l8gm1.apps.googleusercontent.com';
 
